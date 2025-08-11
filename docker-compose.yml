@@ -1,0 +1,50 @@
+services:
+
+# Frontend
+  frontend:
+    container_name: frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    env_file:
+      - ./frontend.env
+    restart: unless-stopped
+
+# Backend
+  backend:
+    container_name: backend
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    env_file:
+      - ./backend/.env
+    depends_on:
+      - database
+    restart: unless-stopped
+
+# Database 
+  database:
+    container_name: database
+    build:
+      context: ./database
+      dockerfile: Dockerfile
+    env_file:
+      - ./database/.env
+    volumes:
+      - database:/data/db
+    restart: unless-stopped
+
+# Adminer UI
+  adminer:
+    container_name: adminer
+    image: adminer
+    ports:
+      - "8081:8080"
+    restart: unless-stopped
+    depends_on:
+      - database
+
+# Volumes
+volumes:
+  database:
+    driver: local
