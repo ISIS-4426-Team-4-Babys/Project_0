@@ -7,23 +7,23 @@ import (
 	"4-babys/todo-backend/models"
 )
 
-func CreateCategory(name, description string) error {
-	// Create category struct
+// CreateCategory creates and saves a new category
+func CreateCategory(name, description string) (models.Category, error) {
 	category := models.Category{
 		Name:        name,
 		Description: description,
 	}
 
-	// Save to DB
+	// Insert category into DB
 	result := config.DB.Create(&category)
-	return result.Error
+	return category, result.Error
 }
 
+// DeleteCategory removes a category by ID
 func DeleteCategory(id uint) error {
-	// Try to delete the category by ID
 	result := config.DB.Delete(&models.Category{}, id)
 
-	// If category doesnt exist
+	// Return error if no rows were affected
 	if result.RowsAffected == 0 {
 		return fmt.Errorf("category with id %d not found", id)
 	}
@@ -31,12 +31,10 @@ func DeleteCategory(id uint) error {
 	return result.Error
 }
 
+// GetAllCategories retrieves all categories from DB
 func GetAllCategories() ([]models.Category, error) {
-	// Declare variable
 	var categories []models.Category
 
-	// Find all the categories in DB
 	result := config.DB.Find(&categories)
-
 	return categories, result.Error
 }

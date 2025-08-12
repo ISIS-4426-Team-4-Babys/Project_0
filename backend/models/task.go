@@ -2,7 +2,7 @@ package models
 
 import "time"
 
-// Task scheme
+// Task represents a user task with status, deadlines, and relations
 type Task struct {
 	ID           uint64     `gorm:"primaryKey;autoIncrement;type:bigint" json:"id"`
 	Text         string     `gorm:"type:text;not null" json:"text"`

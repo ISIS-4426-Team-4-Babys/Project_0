@@ -13,34 +13,32 @@ import (
 
 var DB *gorm.DB
 
+// ConnectDB initializes the database connection and runs migrations
 func ConnectDB() {
-
-	// Get and set importante variables
+	// Load database configuration from environment variables
 	host := os.Getenv("DB_HOST")
-	log.Println(host)
 	user := os.Getenv("DB_USER")
 	password := os.Getenv("DB_PASSWORD")
 	name := os.Getenv("DB_NAME")
 	port := os.Getenv("DB_PORT")
 
-	// Create DSN string
+	// Build the DSN (Data Source Name) string
 	dsn := fmt.Sprintf(
 		"host=%s user=%s password=%s dbname=%s port=%s sslmode=disable",
 		host, user, password, name, port,
 	)
 
-	// Connect to DB
+	// Establish connection to the PostgreSQL database
 	var err error
 	DB, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
-		log.Fatalln("Error connecting to the database:", err)
+		log.Fatalln("Failed to connect to database:", err)
 	}
 
-	// Automatic migrations
-	err = DB.AutoMigrate(&models.User{}, &models.Task{}, &models.Category{})
-	if err != nil {
-		log.Fatalln("Error running migrations:", err)
+	// Run automatic schema migrations for User, Task, and Category models
+	if err = DB.AutoMigrate(&models.User{}, &models.Task{}, &models.Category{}); err != nil {
+		log.Fatalln("Migration error:", err)
 	}
 
-	fmt.Println("Database connected and migrated")
+	log.Println("Database connected and migrated successfully")
 }

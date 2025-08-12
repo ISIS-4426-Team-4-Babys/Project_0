@@ -7,11 +7,11 @@ import (
 
 var JWTSecret string
 
+// LoadConfig loads environment variables needed for the app
 func LoadConfig() {
-
-	// Load JWT secret
+	// Retrieve JWT secret from environment variables
 	JWTSecret = os.Getenv("JWT_SECRET")
 	if JWTSecret == "" {
-		log.Fatal("JWT_SECRET is not set in .env or system")
+		log.Fatal("JWT_SECRET is not set in environment")
 	}
 }

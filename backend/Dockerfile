@@ -1,37 +1,39 @@
-# Golang image tagged as builder
+# Use official Golang image as build stage
 FROM golang:1.24.6 AS builder
 
-# Set working directory
+# Set working directory inside the container
 WORKDIR /app
 
-# Copy only go.mod and go.sum first for caching dependencies
+# Copy dependency files first to leverage Docker cache
 COPY go.mod go.sum ./
+
+# Download Go modules (dependencies)
 RUN go mod download
 
-# Copy the rest of the source code
+# Copy the rest of the source code into the container
 COPY . .
 
-# Copy .env file 
+# Copy environment variables file
 COPY .env .env
 
-# Compile statically for performance and give permits
+# Build the Go application binary and make it executable
 RUN go build -o backend . && chmod +x backend
 
-# Ligthweight Debian image to run compiled code
+# Use lightweight Debian image to run the compiled binary
 FROM debian:bookworm-slim
 
-# Install SSL certificates for HTTPS requests
+# Install SSL certificates needed for HTTPS communication
 RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
-# Set working directory
+# Set working directory for runtime image
 WORKDIR /app
 
-# Copy compiled binary from builder stage
+# Copy the compiled binary from the builder stage
 COPY --from=builder /app/backend .
 
-# Expose application port
+# Expose port 8080 for the app
 EXPOSE 8080
 
-# Run the binary application
+# Run the compiled binary on container start
 CMD ["./backend"]

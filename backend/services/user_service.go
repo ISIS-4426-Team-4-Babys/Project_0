@@ -11,8 +11,8 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
-func CreateUser(username, password, profileImage string) error {
-	// Hash the password
+// CreateUser hashes the password and creates a new user
+func CreateUser(username, password, profileImage string) (models.User, error) {
 	hashedPass, _ := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
 
 	user := models.User{
@@ -21,11 +21,12 @@ func CreateUser(username, password, profileImage string) error {
 		ProfileImage: profileImage,
 	}
 
-	// Save to DB
+	// Insert user into DB
 	result := config.DB.Create(&user)
-	return result.Error
+	return user, result.Error
 }
 
+// Login authenticates user and returns a JWT token if successful
 func Login(username, password string) (string, error) {
 	var user models.User
 
@@ -34,18 +35,18 @@ func Login(username, password string) (string, error) {
 		return "", errors.New("invalid username or password")
 	}
 
-	// Check password
+	// Verify password
 	if bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(password)) != nil {
 		return "", errors.New("invalid username or password")
 	}
 
-	// Create JWT token
+	// Generate JWT token with 24h expiry
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
 		"sub": user.ID,
-		"exp": time.Now().Add(time.Hour * 24).Unix(),
+		"exp": time.Now().Add(24 * time.Hour).Unix(),
 	})
 
-	// Sign token using secret key from config
+	// Sign token with secret
 	tokenString, err := token.SignedString([]byte(config.JWTSecret))
 	if err != nil {
 		return "", err

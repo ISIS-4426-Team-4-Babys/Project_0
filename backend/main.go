@@ -6,11 +6,12 @@ import (
 )
 
 func main() {
-
-	// Connect to db
+	// Initialize database connection
 	config.ConnectDB()
-	// Set up API routes
+
+	// Setup API routes
 	r := routes.SetupRouter()
-	// Expose API
+
+	// Start server on port 8080
 	r.Run(":8080")
 }

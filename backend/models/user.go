@@ -1,6 +1,6 @@
 package models
 
-// User scheme
+// User represents an application user with credentials and profile info
 type User struct {
 	ID           uint64 `gorm:"primaryKey;autoIncrement;type:bigint" json:"id"`
 	Username     string `gorm:"size:50;unique;not null" json:"username"`

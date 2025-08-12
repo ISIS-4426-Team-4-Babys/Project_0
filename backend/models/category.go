@@ -1,6 +1,6 @@
 package models
 
-// Category scheme
+// Category represents a task category in the system
 type Category struct {
 	ID          uint64 `gorm:"primaryKey;autoIncrement;type:bigint" json:"id"`
 	Name        string `gorm:"size:100;not null" json:"name"`

@@ -10,43 +10,49 @@ import (
 	"github.com/golang-jwt/jwt/v5"
 )
 
+// JWTAuthMiddleware validates JWT tokens in Authorization header
 func JWTAuthMiddleware() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		// Get the Authorization header from the request
+		// Get Authorization header
 		authHeader := c.GetHeader("Authorization")
 		if authHeader == "" {
-			// If the header is missing, respond with 401 Unauthorized
 			c.JSON(http.StatusUnauthorized, gin.H{"error": "Authorization header required"})
 			c.Abort()
 			return
 		}
 
-		// Remove the "Bearer " prefix to extract the token string
+		// Extract token string by removing "Bearer " prefix
 		tokenString := strings.TrimPrefix(authHeader, "Bearer ")
 		if tokenString == authHeader {
-			// If the prefix wasn't present, respond with 401 Unauthorized
 			c.JSON(http.StatusUnauthorized, gin.H{"error": "Authorization header format must be Bearer {token}"})
 			c.Abort()
 			return
 		}
 
-		// Parse and validate the JWT token
+		// Parse and validate JWT token with secret
 		token, err := jwt.Parse(tokenString, func(token *jwt.Token) (interface{}, error) {
-			// Validate the signing method to be HMAC (e.g. HS256)
+			// Ensure signing method is HMAC
 			if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
 				return nil, errors.New("unexpected signing method")
 			}
 			return []byte(config.JWTSecret), nil
 		})
 
-		// If token is invalid or expired, respond with 401 Unauthorized
+		// Reject invalid or expired tokens
 		if err != nil || !token.Valid {
 			c.JSON(http.StatusUnauthorized, gin.H{"error": "Invalid or expired token", "details": err.Error()})
 			c.Abort()
 			return
 		}
 
-		// Token is valid, proceed with the request
+		// Extract user ID from token claims and store in context
+		if claims, ok := token.Claims.(jwt.MapClaims); ok && token.Valid {
+			if sub, ok := claims["sub"].(float64); ok {
+				c.Set("userID", uint64(sub))
+			}
+		}
+
+		// Proceed to next handler
 		c.Next()
 	}
 }

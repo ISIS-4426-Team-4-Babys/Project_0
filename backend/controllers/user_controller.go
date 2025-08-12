@@ -8,50 +8,57 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// Request body for creating a user
+// CreateUserRequest defines JSON body for user registration
 type CreateUserRequest struct {
 	Username     string `json:"username" binding:"required"`
 	Password     string `json:"password" binding:"required"`
 	ProfileImage string `json:"profileImage"`
 }
 
-// Request body for login
+// LoginRequest defines JSON body for user login
 type LoginRequest struct {
 	Username string `json:"username" binding:"required"`
 	Password string `json:"password" binding:"required"`
 }
 
-// POST /users
+// CreateUser handles POST /users to register a new user
 func CreateUser(c *gin.Context) {
 	var req CreateUserRequest
 
-	// Format error
+	// Bind and validate JSON request
 	if err := c.ShouldBindJSON(&req); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid request body"})
 		return
 	}
 
-	// Service error
-	if err := services.CreateUser(req.Username, req.Password, req.ProfileImage); err != nil {
+	// Create user via service layer
+	user, err := services.CreateUser(req.Username, req.Password, req.ProfileImage)
+	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Could not create user"})
 		return
 	}
 
-	c.JSON(http.StatusCreated, gin.H{"message": "User created successfully"})
+	// Clear password before sending response
+	user.Password = ""
+
+	c.JSON(http.StatusCreated, gin.H{
+		"message": "User created successfully",
+		"user":    user,
+	})
 }
 
-// POST /users/login
+// Login handles POST /users/login to authenticate a user and return JWT token
 func Login(c *gin.Context) {
 	var req LoginRequest
 
-	// Format error
+	// Bind and validate JSON request
 	if err := c.ShouldBindJSON(&req); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid request body"})
 		return
 	}
 
+	// Authenticate user and get token
 	token, err := services.Login(req.Username, req.Password)
-	// Service error
 	if err != nil {
 		c.JSON(http.StatusUnauthorized, gin.H{"error": "Invalid username or password"})
 		return
