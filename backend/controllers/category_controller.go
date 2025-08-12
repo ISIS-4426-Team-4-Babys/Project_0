@@ -59,9 +59,8 @@ func DeleteCategory(c *gin.Context) {
 
 // GET /categroies
 func GetAllCategories(c *gin.Context) {
-	categories, err := services.GetAllCategories()
-
 	// Service error
+	categories, err := services.GetAllCategories()
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Could not get categories"})
 		return
