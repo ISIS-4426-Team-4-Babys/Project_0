@@ -1,4 +1,4 @@
-# PostgreSQL Database 
+# PostgreSQL image
 FROM postgres:17-alpine
 
 # Install additional security packages
@@ -13,7 +13,9 @@ COPY init-postgres.sql /docker-entrypoint-initdb.d/init-postgres.sql
 RUN chmod 644 /docker-entrypoint-initdb.d/init-postgres.sql
 
 # Health check 
-HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
+# Each 15 seconds checks if the database is healthy
+# If the database fails 3 times in a row, is unhelathy
+HEALTHCHECK --interval=15s --timeout=5s --start-period=60s --retries=3 \
   CMD pg_isready -U ${POSTGRES_USER:-postgres} -d todo-db || exit 1
 
 # The base postgres image already exposes port 5432 and runs as postgres user
