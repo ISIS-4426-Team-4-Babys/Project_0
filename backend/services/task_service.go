@@ -9,12 +9,6 @@ import (
 	"4-babys/todo-backend/models"
 )
 
-type UpdateTaskRequest struct {
-	Text    *string `json:"text,omitempty"`
-	EndDate *string `json:"end_date,omitempty"`
-	Status  *string `json:"status,omitempty"`
-}
-
 // CreateTask creates a new task and saves it to the DB, then loads relations
 func CreateTask(text string, endDate *time.Time, idCategory uint64, idUser uint64) (models.Task, error) {
 	if text == "" {
