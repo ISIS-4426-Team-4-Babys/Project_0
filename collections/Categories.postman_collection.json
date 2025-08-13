@@ -1,0 +1,250 @@
+{
+	"info": {
+		"_postman_id": "73b8bc88-d456-48db-8b8b-ae747739c660",
+		"name": "Categories",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "47548803",
+		"_collection_link": "https://mrcheesyburgeru-3113691.postman.co/workspace/Nicolas-Rozo-Fajardo's-Workspac~d282d319-67a1-4bda-8570-f9f29991945d/collection/47548803-73b8bc88-d456-48db-8b8b-ae747739c660?action=share&source=collection_link&creator=47548803"
+	},
+	"item": [
+		{
+			"name": "Create Category",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();      ",
+							"var category_id = jsonData.category.id;          ",
+							"pm.environment.set(\"category_id\", category_id);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{auth_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\" : \"Music\",\n    \"description\" : \"My personal list for music =)\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{service_url}}/categories",
+					"host": [
+						"{{service_url}}"
+					],
+					"path": [
+						"categories"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Create Category",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\" : \"Music\",\n    \"description\" : \"My personal list for music =)\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{service_url}}/categories",
+							"host": [
+								"{{service_url}}"
+							],
+							"path": [
+								"categories"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\n    \"category\": {\n        \"id\": 1,\n        \"name\": \"Music\",\n        \"description\": \"My personal list for music =)\"\n    },\n    \"message\": \"Category created successfully\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get Categories",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{auth_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/categories",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"categories"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get Categories",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/categories",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"categories"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "[\n    {\n        \"id\": 1,\n        \"name\": \"Music\",\n        \"description\": \"My personal list for music =)\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Delete Category",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{auth_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\" : \"ThePrettyBoy\",\n    \"password\" : \"DirtyBoy\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{service_url}}/categories/{{category_id}}",
+					"host": [
+						"{{service_url}}"
+					],
+					"path": [
+						"categories",
+						"{{category_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete Category",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\" : \"ThePrettyBoy\",\n    \"password\" : \"DirtyBoy\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{service_url}}/categories/{{category_id}}",
+							"host": [
+								"{{service_url}}"
+							],
+							"path": [
+								"categories",
+								"{{category_id}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\n    \"message\": \"Category deleted\"\n}"
+				}
+			]
+		}
+	]
+}
