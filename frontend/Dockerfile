@@ -1,31 +1,49 @@
-# Use official Node.js image
+# Use official lightweight Node.js 20 Alpine image
 FROM node:20-alpine AS builder
 
-# Set working directory
+# Set working directory inside container
 WORKDIR /app
 
-# Install dependencies
-COPY package.json package-lock.json* pnpm-lock.yaml* yarn.lock* ./
+# Copy dependency definition files first to leverage Docker layer caching
+COPY package*.json ./
+
+# Install dependencies (only production dependencies will be copied later)
 RUN npm install
 
-# Copy source code
+# Copy the entire frontend source code into the container
 COPY . .
 
-# Build Next.js app
+# Build the Next.js application for production
 RUN npm run build
 
-# Production image
+# -----------------------------
+# Second stage: run optimized app
+# -----------------------------
 FROM node:20-alpine AS runner
+
+# Set working directory inside container
 WORKDIR /app
 
-# Copy built app and node_modules from builder
-COPY --from=builder /app/.next ./.next
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/package.json ./package.json
-COPY --from=builder /app/next.config.ts ./next.config.ts
+# Copy package files to runner stage
+COPY --from=builder /app/package*.json ./
 
-# Expose port (default Next.js port)
+# Copy installed dependencies from builder stage
+COPY --from=builder /app/node_modules ./node_modules
+
+# Copy compiled Next.js build output
+COPY --from=builder /app/.next ./.next
+
+# Copy public assets
+COPY --from=builder /app/public ./public
+
+# Set environment to production for optimized performance
+ENV NODE_ENV=production
+
+# Default port for Next.js in production mode
+ENV PORT=3000
+
+# Expose port so it can be mapped outside the container
 EXPOSE 3000
 
-# Start Next.js with npx next start
-CMD ["npx", "next", "start"]
+# Run the Next.js production server
+CMD ["npm", "start"]
