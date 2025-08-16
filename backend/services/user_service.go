@@ -27,17 +27,17 @@ func CreateUser(username, password, profileImage string) (models.User, error) {
 }
 
 // Login authenticates user and returns a JWT token if successful
-func Login(username, password string) (string, error) {
+func Login(username, password string) (string, models.User, error) {
 	var user models.User
 
 	// Find user by username
 	if err := config.DB.Where("username = ?", username).First(&user).Error; err != nil {
-		return "", errors.New("invalid username or password")
+		return "", models.User{}, errors.New("invalid username or password")
 	}
 
 	// Verify password
 	if bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(password)) != nil {
-		return "", errors.New("invalid username or password")
+		return "", models.User{}, errors.New("invalid username or password")
 	}
 
 	// Generate JWT token with 24h expiry
@@ -49,8 +49,10 @@ func Login(username, password string) (string, error) {
 	// Sign token with secret
 	tokenString, err := token.SignedString([]byte(config.JWTSecret))
 	if err != nil {
-		return "", err
+		return "", models.User{}, err
 	}
 
-	return tokenString, nil
+	user.Password = ""
+
+	return tokenString, user, nil
 }

@@ -58,11 +58,11 @@ func Login(c *gin.Context) {
 	}
 
 	// Authenticate user and get token
-	token, err := services.Login(req.Username, req.Password)
+	token, user, err := services.Login(req.Username, req.Password)
 	if err != nil {
 		c.JSON(http.StatusUnauthorized, gin.H{"error": "Invalid username or password"})
 		return
 	}
 
-	c.JSON(http.StatusOK, gin.H{"token": token})
+	c.JSON(http.StatusOK, gin.H{"token": token, "user": user})
 }
