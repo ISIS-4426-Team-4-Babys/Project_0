@@ -12,7 +12,7 @@ import (
 type CreateUserRequest struct {
 	Username     string `json:"username" binding:"required"`
 	Password     string `json:"password" binding:"required"`
-	ProfileImage string `json:"profileImage"`
+	ProfileImage string `json:"profile_image" binding:"required"`
 }
 
 // LoginRequest defines JSON body for user login

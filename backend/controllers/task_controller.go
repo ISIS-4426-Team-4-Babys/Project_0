@@ -13,7 +13,7 @@ import (
 // CreateTaskRequest defines JSON body for creating a task
 type CreateTaskRequest struct {
 	Text       string     `json:"text" binding:"required"`
-	EndDate    *time.Time `json:"end_date"` // optional
+	EndDate    *time.Time `json:"end_date" binding:"required"`
 	IDCategory uint64     `json:"id_category" binding:"required"`
 }
 
