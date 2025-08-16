@@ -2,8 +2,8 @@
 
 import { useForm } from "react-hook-form";
 import { format } from "date-fns";
-import { Calendar as CalendarIcon, PlusCircle, Tag, Layers, CalendarDays } from "lucide-react";
-import { useState } from "react";
+import { Calendar as CalendarIcon, PlusCircle, Tag, Layers, CalendarDays, Trash2, Pencil } from "lucide-react";
+import React, { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 
 import { Button } from "@/components/ui/button";
@@ -33,7 +33,7 @@ import { cn } from "@/lib/utils";
 import type { Task } from "@/lib/types";
 
 
-export function TaskForm({ addTask, categories, handleAddCategory, deleteCategory }: { addTask: (task: Task) => void; categories: any[]; handleAddCategory: (e: React.FormEvent, newCategoryName: string, newCategoryDescription: string) => void; deleteCategory: (id: number) => void }) {
+export function TaskForm({ addTask, categories, addCategory, deleteCategory, updateCategory }: { addTask: (task: Task) => void; categories: any[]; addCategory: (e: React.FormEvent, newCategoryName: string, newCategoryDescription: string) => void; deleteCategory: (id: number) => void; updateCategory: (id: number, newName: string, newDescription: string) => void }) {
   const form = useForm({
     defaultValues: {
       description: "",
@@ -46,6 +46,7 @@ export function TaskForm({ addTask, categories, handleAddCategory, deleteCategor
   const [showAddRow, setShowAddRow] = useState(false);
   const [newCategoryName, setNewCategoryName] = useState("");
   const [newCategoryDescription, setNewCategoryDescription] = useState("");
+  const [editingCategory, setEditingCategory] = useState(null);
 
   function onSubmit(data: any) {
     addTask(data);
@@ -57,9 +58,14 @@ export function TaskForm({ addTask, categories, handleAddCategory, deleteCategor
     });
   }
 
-  
-  
-
+  function onSaveCat(e: React.FormEvent) {
+    if (editingCategory) {
+      updateCategory(editingCategory, newCategoryName, newCategoryDescription);
+      setEditingCategory(null);
+    } else {
+      addCategory(e, newCategoryName, newCategoryDescription);
+    }
+  }
 
   return (
     <Form {...form}>
@@ -201,7 +207,7 @@ export function TaskForm({ addTask, categories, handleAddCategory, deleteCategor
                 <form
                   className="flex flex-col gap-2 mt-4"
                   onSubmit={(e) => {
-                    handleAddCategory(e, newCategoryName, newCategoryDescription);
+                    onSaveCat(e);
                     setShowAddRow(false);
                     setNewCategoryName("");
                     setNewCategoryDescription("");
@@ -228,7 +234,8 @@ export function TaskForm({ addTask, categories, handleAddCategory, deleteCategor
                       type="button"
                       variant="ghost"
                       size="sm"
-                      onClick={() => {
+                      onClick={(e) => {
+                        onSaveCat(e);
                         setShowAddRow(false);
                         setNewCategoryName("");
                         setNewCategoryDescription("");
@@ -245,15 +252,31 @@ export function TaskForm({ addTask, categories, handleAddCategory, deleteCategor
                 categories.map((category) => (
                 <li key={category.id} className="flex items-center justify-between border rounded px-3 py-2">
                   <span>{category.name}</span>
-                  <Button
-                  variant="destructive"
-                  size="sm"
-                  onClick={() => {
-                    deleteCategory(category.id);
-                  }}
-                  >
-                  Delete
-                  </Button>
+                    <span className="flex gap-2">
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        aria-label="Edit category"
+                        onClick={() => {
+                          setShowAddRow(true);
+                          setNewCategoryName(category.name);
+                          setNewCategoryDescription(category.description || "");
+                          setEditingCategory(category.id);
+                        }}
+                      >
+                        <Pencil className="h-4 w-4 text-blue-500" />
+                      </Button>
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        aria-label="Delete category"
+                        onClick={() => {
+                          deleteCategory(category.id);
+                        }}
+                      >
+                        <Trash2 className="h-4 w-4 text-red-500" />
+                      </Button>
+                    </span>
                 </li>
                 ))
               ) : (

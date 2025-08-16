@@ -6,13 +6,14 @@ import type { Task, Category } from "@/lib/types";
 import { TaskForm } from "@/components/task-form";
 import { TaskList } from "@/components/task-list";
 import { Navbar } from "@/components/navbar";
-import { ListChecks } from "lucide-react";
+import { set } from "date-fns";
 
 
 export default function Home() {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
   const [token, setToken] = useState<string | null>(null);
+  const [user, setUser] = useState<any>(null);
 
   const handleAddTask = (task: any) => {
     
@@ -122,6 +123,7 @@ export default function Home() {
     if (token) {
       fetchTasks();
       fetchCategories();
+      console.log(localStorage.getItem("api_token"));
     }
     return () => {
       ac.abort();
@@ -186,7 +188,7 @@ const onDelete = async (id: string) => {
       setTasks((prevTasks) => prevTasks.filter((task) => String(task.id) !== id));
     };
 
-  const handleAddCategory = async (e: React.FormEvent, newCategoryName: string, newCategoryDescription: string) => {
+  const addCategory = async (e: React.FormEvent, newCategoryName: string, newCategoryDescription: string) => {
     try {
       e.preventDefault();
       const newCategory = {
@@ -256,18 +258,60 @@ const onDelete = async (id: string) => {
     }
   };
 
+  const updateCategory = async (id: number, newName: string, newDescription: string) => {
+    try {
+      const updatedCategory = {
+        name: newName,
+        description: newDescription,
+      };
+
+      const headers: HeadersInit = {
+        'Content-Type': 'application/json',
+      };
+      if (token) {
+        headers['Authorization'] = `Bearer ${token}`;
+      }
+
+      const response = await fetch(`/api/categories/${id}`, {
+        method: "PUT",
+        headers,
+        credentials: "include",
+        body: JSON.stringify(updatedCategory),
+      });
+
+      if (!response.ok) {
+        const data = await response.json();
+        throw new Error(data.error);
+      }
+
+      const updatedResponse = await fetch("/api/categories", {
+        method: "GET",
+        headers,
+        credentials: "include",
+      });
+      if (!updatedResponse.ok) {
+        const data = await updatedResponse.json();
+        throw new Error(data.error);
+      }
+      const updatedCategories = await updatedResponse.json();
+      setCategories(updatedCategories);
+    } catch (error) {
+      alert(error ? error : "An error occurred during category update.");
+    }
+  }
+
   if (!token) {
-    return <SignForm token={token} setToken={setToken} />;
+    return <SignForm token={token} setToken={setToken} setUser={setUser}/>;
   }
   return (
     <div className="min-h-screen w-full bg-background font-body">
-      <Navbar />
+      <Navbar user={user} setToken={setToken} />
       <main className="container mx-auto px-4 py-8 md:px-6 md:py-12">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-3">
           <aside className="lg:col-span-1">
             <div className="rounded-xl border bg-card p-6 shadow-md" >
               <h2 className="text-2xl font-semibold mb-4 text-card-foreground">Add New Task</h2>
-              <TaskForm addTask={handleAddTask} categories={categories ?? []} handleAddCategory={handleAddCategory} deleteCategory={deleteCategory} />
+              <TaskForm addTask={handleAddTask} categories={categories ?? []} addCategory={addCategory} deleteCategory={deleteCategory} updateCategory={updateCategory} />
             </div>
           </aside>
           <div className="lg:col-span-2">
