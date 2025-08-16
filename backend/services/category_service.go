@@ -38,3 +38,29 @@ func GetAllCategories() ([]models.Category, error) {
 	result := config.DB.Find(&categories)
 	return categories, result.Error
 }
+
+// UpdateCategory updates fields of an existing category, then loads relations
+func UpdateCategory(id uint64, name *string, description *string) (models.Category, error) {
+	var category models.Category
+
+	// Find category by ID
+	if err := config.DB.First(&category, id).Error; err != nil {
+		return models.Category{}, err
+	}
+
+	// Update non-nil fields
+	if name != nil {
+		category.Name = *name
+	}
+	if description != nil {
+		category.Description = *description
+	}
+
+	// Save updates
+	result := config.DB.Save(&category)
+	if result.Error != nil {
+		return models.Category{}, result.Error
+	}
+
+	return category, nil
+}

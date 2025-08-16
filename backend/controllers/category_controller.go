@@ -15,6 +15,12 @@ type CreateCategoryRequest struct {
 	Description string `json:"description" binding:"required"`
 }
 
+// UpdateCategoryRequest defines JSON body for updating a category
+type UpdateCategoryRequest struct {
+	Name        *string `json:"name,omitempty"`
+	Description *string `json:"description,omitempty"`
+}
+
 // CreateCategory handles POST /categories to create a new category
 func CreateCategory(c *gin.Context) {
 	var req CreateCategoryRequest
@@ -68,4 +74,36 @@ func GetAllCategories(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, categories)
+}
+
+// UpdateCategory handles PUT /categories/:id to update category fields
+func UpdateCategory(c *gin.Context) {
+	idStr := c.Param("id")
+
+	// Parse category ID param
+	id64, err := strconv.ParseUint(idStr, 10, 64)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid category ID"})
+		return
+	}
+
+	var req UpdateCategoryRequest
+
+	// Bind and validate JSON request
+	if err := c.ShouldBindJSON(&req); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid request body"})
+		return
+	}
+
+	// Update category via service layer
+	category, err := services.UpdateCategory(uint64(id64), req.Name, req.Description)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"message":  "Category updated successfully",
+		"category": category,
+	})
 }

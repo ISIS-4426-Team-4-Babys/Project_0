@@ -20,6 +20,7 @@ func SetupRouter() *gin.Engine {
 
 	// Category routes
 	protected.POST("/categories", controllers.CreateCategory)
+	protected.PUT("/categories/:id", controllers.UpdateCategory)
 	protected.DELETE("/categories/:id", controllers.DeleteCategory)
 	protected.GET("/categories", controllers.GetAllCategories)
 
