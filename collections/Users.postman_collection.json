@@ -1,11 +1,11 @@
 {
 	"info": {
-		"_postman_id": "bdec5def-7c8d-42d1-b085-c107b684da28",
+		"_postman_id": "2bf95502-23d2-40a1-8ae7-6e85653edc80",
 		"name": "Users",
 		"description": "### Welcome to Postman! This is your first collection. \n\nCollections are your starting point for building and testing APIs. You can use this one to:\n\n• Group related requests\n• Test your API in real-world scenarios\n• Document and share your requests\n\nUpdate the name and overview whenever you’re ready to make it yours.\n\n[Learn more about Postman Collections.](https://learning.postman.com/docs/collections/collections-overview/)",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "47548803",
-		"_collection_link": "https://mrcheesyburgeru-3113691.postman.co/workspace/Nicolas-Rozo-Fajardo's-Workspac~d282d319-67a1-4bda-8570-f9f29991945d/collection/47548803-bdec5def-7c8d-42d1-b085-c107b684da28?action=share&source=collection_link&creator=47548803"
+		"_exporter_id": "47552131",
+		"_collection_link": "https://nathaliaq16-620590.postman.co/workspace/Nathalia-Alexandra-Quiroga-Alfa~5b22ce91-e7f6-45ac-868e-e2a36efe4bf5/collection/47552131-2bf95502-23d2-40a1-8ae7-6e85653edc80?action=share&source=collection_link&creator=47552131"
 	},
 	"item": [
 		{
@@ -15,7 +15,214 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"username\" : \"ThePrettyBoy\",\n    \"password\" : \"DirtyBoy\"\n}",
+					"raw": "{\n    \"username\" : \"ThePrettyBoy\",\n    \"password\" : \"DirtyBoy\",\n    \"profile_image\" : \"https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{service_url}}/users",
+					"host": [
+						"{{service_url}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Create User",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\" : \"ThePrettyBoy\",\n    \"password\" : \"DirtyBoy\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{service_url}}/users",
+							"host": [
+								"{{service_url}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\n    \"message\": \"User created successfully\",\n    \"user\": {\n        \"id\": 1,\n        \"username\": \"ThePrettyBoy\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Create User Int Username",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\" : 3434,\n    \"password\" : \"DirtyBoy\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{service_url}}/users",
+					"host": [
+						"{{service_url}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Create User",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\" : \"ThePrettyBoy\",\n    \"password\" : \"DirtyBoy\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{service_url}}/users",
+							"host": [
+								"{{service_url}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\n    \"message\": \"User created successfully\",\n    \"user\": {\n        \"id\": 1,\n        \"username\": \"ThePrettyBoy\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Create Empty User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\" : \"\",\n    \"password\" : \"DirtyBoy\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{service_url}}/users",
+					"host": [
+						"{{service_url}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Create User",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\" : \"ThePrettyBoy\",\n    \"password\" : \"DirtyBoy\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{service_url}}/users",
+							"host": [
+								"{{service_url}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\n    \"message\": \"User created successfully\",\n    \"user\": {\n        \"id\": 1,\n        \"username\": \"ThePrettyBoy\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Create Duplicate User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\" : \"ThePrettyBoy\",\n    \"password\" : \"4babys\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -98,6 +305,90 @@
 				"body": {
 					"mode": "raw",
 					"raw": "{\n    \"username\" : \"ThePrettyBoy\",\n    \"password\" : \"DirtyBoy\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{service_url}}/users/login",
+					"host": [
+						"{{service_url}}"
+					],
+					"path": [
+						"users",
+						"login"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Login User",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\" : \"ThePrettyBoy\",\n    \"password\" : \"DirtyBoy\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{service_url}}/users/login",
+							"host": [
+								"{{service_url}}"
+							],
+							"path": [
+								"users",
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NTUxMzEyMTksInN1YiI6MX0.8stkFrNpZTDWJQfGQobxZ0IfbNCKdNj_alQdqhy9XrE\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Login User Wrong Password",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"pm.environment.set(\"auth_token\", jsonData.token);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\" : \"ThePrettyBoy\",\n    \"password\" : \"4Babys\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
