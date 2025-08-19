@@ -31,7 +31,7 @@ func CreateCategory(name, description string, idUser uint64) (models.Category, e
 }
 
 // DeleteCategory removes a category by ID
-func DeleteCategory(id uint) error {
+func DeleteCategory(id uint64) error {
 	result := config.DB.Delete(&models.Category{}, id)
 
 	// Return error if no rows were affected

@@ -63,14 +63,14 @@ func DeleteCategory(c *gin.Context) {
 	idStr := c.Param("id")
 
 	// Convert id param to uint64
-	id, err := strconv.ParseUint(idStr, 10, 64)
+	id64, err := strconv.ParseUint(idStr, 10, 64)
 	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid ID"})
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid category ID"})
 		return
 	}
 
 	// Delete category using service
-	if err := services.DeleteCategory(uint(id)); err != nil {
+	if err := services.DeleteCategory(uint64(id64)); err != nil {
 		c.JSON(http.StatusNotFound, gin.H{"error": err.Error()})
 		return
 	}
