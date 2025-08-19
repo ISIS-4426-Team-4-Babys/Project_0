@@ -51,7 +51,7 @@ export default function Home() {
                 throw new Error(data.error);
             }
 
-        console.log("Task created:", data);
+        //console.log("Task created:", data);
         setTasks((prevTasks) => [...prevTasks, data.task]);
       } catch (error) {
         alert(error ? error : "An error occurred during task creation.");
@@ -112,7 +112,7 @@ export default function Home() {
         throw new Error(data.error);
       }
 
-      console.log("Fetched categories:", data);
+      //console.log("Fetched categories:", data);
       setCategories(data);
     } catch (error) {
       alert(error ? error : "An error occurred during sign in.");
@@ -130,7 +130,7 @@ export default function Home() {
   }, [token]);
 
 const onUpdate = async (id: string, updatedTask: Task) => {
-  console.log("Updating task:", id, updatedTask);
+  //console.log("Updating task:", id, updatedTask);
   try {
     const headers: HeadersInit = {
       'Content-Type': 'application/json',
@@ -151,7 +151,7 @@ const onUpdate = async (id: string, updatedTask: Task) => {
       throw new Error(data.error);
     }
 
-    console.log("Task updated:", data);
+    //console.log("Task updated:", data);
     setTasks((prevTasks) =>
       prevTasks.map((task) => (String(task.id) === String(id) ? data.task : task))
     );

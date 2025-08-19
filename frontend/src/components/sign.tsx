@@ -61,7 +61,7 @@ const SignForm: React.FC<{ token: string | null, setUser: (user: any) => void, s
                 if (!response.ok) {
                 throw new Error(result.error);
             }
-                console.log('Sign Up Success:', result);
+                //console.log('Sign Up Success:', result);
                 setToken(result.token);
             } catch (error) {
                 alert(error ? error : "An error occurred during sign up.");
@@ -84,7 +84,7 @@ const SignForm: React.FC<{ token: string | null, setUser: (user: any) => void, s
                 throw new Error(result.error);
             }
 
-            console.log('Sign In Success:', result);
+            //console.log('Sign In Success:', result);
             setToken(result.token);
             setUser(result.user);
             localStorage.setItem("api_token", result.token);
@@ -103,7 +103,7 @@ const SignForm: React.FC<{ token: string | null, setUser: (user: any) => void, s
     }
 
     if (token) {
-      console.log('User is authenticated:', token);
+      //console.log('User is authenticated:', token);
       localStorage.setItem("api_token", token);
       window.location.reload(); // Reload to update app state
     }
