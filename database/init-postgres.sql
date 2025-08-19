@@ -37,24 +37,24 @@ CREATE TABLE tasks (
 
 -- Users
 INSERT INTO users (id, username, password, profile_image) VALUES
-(1, 'NepoBaby', '$2a$10$xJW24YxXuNWIwwAHT91Dh.VXoAsztRPF7OMd31QLexH1.TAmUbIjC',
+('NepoBaby', '$2a$10$xJW24YxXuNWIwwAHT91Dh.VXoAsztRPF7OMd31QLexH1.TAmUbIjC',
  'https://www.lego.com/cdn/cs/set/assets/blt5106608431ab56b9/02_Emmet_top_Hero_w_block.jpg?fit=crop&format=jpg&quality=80&width=800&height=426&dpr=1'),
-(2, 'ErizoPetizo', '$2a$10$pFI5a39pewwrG.0ZAhqiuOSuio7PBNS50v/dZRdVkplfuUtegDX5W',
+('ErizoPetizo', '$2a$10$pFI5a39pewwrG.0ZAhqiuOSuio7PBNS50v/dZRdVkplfuUtegDX5W',
  'https://static01.nyt.com/images/2019/02/01/arts/01tvcol-legomovie/01tvcol-legomovie-articleLarge.jpg?quality=75&auto=webp&disable=upscale');
 
 -- Categories
 INSERT INTO categories (id, name, description, id_user) VALUES
-(1, 'Universidad', 'Tareas de la Universidad de los Andes para el semestre 2025-20', 1),
-(2, 'Trabajo', 'Tareas para la pasantía en telecomunicaciones en ZTE', 1),
-(3, 'Tesis', 'Tareas para la tesis en seguridad en redes IoT', 1),
-(5, 'Universidad', 'Tareas Uniandes', 2),
-(6, 'Doctorado', 'Tareas de esclavo académico', 2);
+('Universidad', 'Tareas de la Universidad de los Andes para el semestre 2025-20', 1),
+('Trabajo', 'Tareas para la pasantía en telecomunicaciones en ZTE', 1),
+('Tesis', 'Tareas para la tesis en seguridad en redes IoT', 1),
+('Universidad', 'Tareas Uniandes', 2),
+('Doctorado', 'Tareas de esclavo académico', 2);
 
 -- Tasks
 INSERT INTO tasks (id, text, creation_date, end_date, status, id_category, id_user) VALUES
-(2, 'Tarea 1 - Procesamiento de Lenguaje Natural', '2025-08-18', '2025-08-27', 'Sin Empezar', 1, 1),
-(1, 'Proyecto 0 - Desarrollo de Soluciones Cloud', '2025-08-18', '2025-08-19', 'Finalizada', 1, 1),
-(4, 'Solicitar Préstamo Nano Jetson', '2025-08-18', '2025-08-21', 'Empezada', 3, 1),
-(3, 'Averiguar Protocolos GPON y FTTx', '2025-08-18', '2025-08-22', 'Empezada', 2, 1),
-(7, 'Laboratorios Ciberseguridad', '2025-08-18', '2025-08-22', 'Finalizada', 5, 2),
-(8, 'Estado del Arte - Sistema CMS', '2025-08-18', '2025-08-29', 'Empezada', 6, 2);
+('Tarea 1 - Procesamiento de Lenguaje Natural', '2025-08-18', '2025-08-27', 'Sin Empezar', 1, 1),
+('Proyecto 0 - Desarrollo de Soluciones Cloud', '2025-08-18', '2025-08-19', 'Finalizada', 1, 1),
+('Solicitar Préstamo Nano Jetson', '2025-08-18', '2025-08-21', 'Empezada', 3, 1),
+('Averiguar Protocolos GPON y FTTx', '2025-08-18', '2025-08-22', 'Empezada', 2, 1),
+('Laboratorios Ciberseguridad', '2025-08-18', '2025-08-22', 'Finalizada', 4, 2),
+('Estado del Arte - Sistema CMS', '2025-08-18', '2025-08-29', 'Empezada', 5, 2);
