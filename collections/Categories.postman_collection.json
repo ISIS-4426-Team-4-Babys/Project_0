@@ -1,10 +1,10 @@
 {
 	"info": {
-		"_postman_id": "2a17c819-1c29-4dc9-9f2a-6f470d67c63b",
+		"_postman_id": "63210e2f-e10c-40e4-b11c-c48cf851314e",
 		"name": "Categories",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "47552131",
-		"_collection_link": "https://nathaliaq16-620590.postman.co/workspace/Nathalia-Alexandra-Quiroga-Alfa~5b22ce91-e7f6-45ac-868e-e2a36efe4bf5/collection/47552131-2a17c819-1c29-4dc9-9f2a-6f470d67c63b?action=share&source=collection_link&creator=47552131"
+		"_exporter_id": "47548803",
+		"_collection_link": "https://mrcheesyburgeru-3113691.postman.co/workspace/Nicolas-Rozo-Fajardo's-Workspac~d282d319-67a1-4bda-8570-f9f29991945d/collection/47548803-63210e2f-e10c-40e4-b11c-c48cf851314e?action=share&source=collection_link&creator=47548803"
 	},
 	"item": [
 		{
@@ -96,20 +96,18 @@
 							"expires": "Invalid Date"
 						}
 					],
-					"body": "{\n    \"category\": {\n        \"id\": 1,\n        \"name\": \"Music\",\n        \"description\": \"My personal list for music =)\"\n    },\n    \"message\": \"Category created successfully\"\n}"
+					"body": "{\n    \"category\": {\n        \"id\": 6,\n        \"name\": \"Music\",\n        \"description\": \"My personal list for music =)\",\n        \"id_user\": 3,\n        \"user\": {\n            \"id\": 3,\n            \"username\": \"ThePrettyBoy\",\n            \"profile_image\": \"https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png\"\n        }\n    },\n    \"message\": \"Category created successfully\"\n}"
 				}
 			]
 		},
 		{
-			"name": "Create Category Empty Name",
+			"name": "Create Category With Empty Name",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"var jsonData = pm.response.json();      ",
-							"var category_id = jsonData.category.id;          ",
-							"pm.environment.set(\"category_id\", category_id);"
+							""
 						],
 						"type": "text/javascript",
 						"packages": {}
@@ -173,6 +171,191 @@
 							]
 						}
 					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\n    \"error\": \"Invalid request body\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Create Category With Empty Description",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{auth_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\" : \"Music\",\n    \"description\" : \"\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{service_url}}/categories",
+					"host": [
+						"{{service_url}}"
+					],
+					"path": [
+						"categories"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Create Category",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\" : \"Music\",\n    \"description\" : \"My personal list for music =)\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{service_url}}/categories",
+							"host": [
+								"{{service_url}}"
+							],
+							"path": [
+								"categories"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\n    \"error\": \"Invalid request body\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Update Category",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();      ",
+							"var category_id = jsonData.category.id;          ",
+							"pm.environment.set(\"category_id\", category_id);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{auth_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\" : \"Music and Ideas\",\n    \"description\" : \"My personal list for music and ideas =)\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{service_url}}/categories/{{category_id}}",
+					"host": [
+						"{{service_url}}"
+					],
+					"path": [
+						"categories",
+						"{{category_id}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Create Category",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\" : \"Music\",\n    \"description\" : \"My personal list for music =)\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{service_url}}/categories",
+							"host": [
+								"{{service_url}}"
+							],
+							"path": [
+								"categories"
+							]
+						}
+					},
 					"status": "OK",
 					"code": 200,
 					"_postman_previewlanguage": "json",
@@ -189,12 +372,12 @@
 							"expires": "Invalid Date"
 						}
 					],
-					"body": "{\n    \"category\": {\n        \"id\": 1,\n        \"name\": \"Music\",\n        \"description\": \"My personal list for music =)\"\n    },\n    \"message\": \"Category created successfully\"\n}"
+					"body": "{\n    \"category\": {\n        \"id\": 6,\n        \"name\": \"Music and Ideas\",\n        \"description\": \"My personal list for music and ideas =)\",\n        \"id_user\": 3,\n        \"user\": {\n            \"id\": 3,\n            \"username\": \"ThePrettyBoy\",\n            \"profile_image\": \"https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png\"\n        }\n    },\n    \"message\": \"Category updated successfully\"\n}"
 				}
 			]
 		},
 		{
-			"name": "Get Categories",
+			"name": "Get User Categories",
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -209,14 +392,13 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/categories",
-					"protocol": "http",
+					"raw": "{{service_url}}/categories/user",
 					"host": [
-						"localhost"
+						"{{service_url}}"
 					],
-					"port": "8080",
 					"path": [
-						"categories"
+						"categories",
+						"user"
 					]
 				}
 			},
@@ -254,7 +436,7 @@
 							"expires": "Invalid Date"
 						}
 					],
-					"body": "[\n    {\n        \"id\": 1,\n        \"name\": \"Music\",\n        \"description\": \"My personal list for music =)\"\n    }\n]"
+					"body": "[\n    {\n        \"id\": 6,\n        \"name\": \"Music and Ideas\",\n        \"description\": \"My personal list for music and ideas =)\",\n        \"id_user\": 3,\n        \"user\": {\n            \"id\": 3,\n            \"username\": \"ThePrettyBoy\",\n            \"profile_image\": \"https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png\"\n        }\n    }\n]"
 				}
 			]
 		},

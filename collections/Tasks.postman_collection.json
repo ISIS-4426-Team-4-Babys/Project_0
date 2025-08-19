@@ -1,10 +1,10 @@
 {
 	"info": {
-		"_postman_id": "1ac8a023-385c-44f1-bdcc-1d91269f467a",
+		"_postman_id": "81f54350-c3bf-495c-a02f-a60c3362356d",
 		"name": "Tasks",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "47552131",
-		"_collection_link": "https://nathaliaq16-620590.postman.co/workspace/Nathalia-Alexandra-Quiroga-Alfa~5b22ce91-e7f6-45ac-868e-e2a36efe4bf5/collection/47552131-1ac8a023-385c-44f1-bdcc-1d91269f467a?action=share&source=collection_link&creator=47552131"
+		"_exporter_id": "47548803",
+		"_collection_link": "https://mrcheesyburgeru-3113691.postman.co/workspace/Nicolas-Rozo-Fajardo's-Workspac~d282d319-67a1-4bda-8570-f9f29991945d/collection/47548803-81f54350-c3bf-495c-a02f-a60c3362356d?action=share&source=collection_link&creator=47548803"
 	},
 	"item": [
 		{
@@ -80,8 +80,8 @@
 							]
 						}
 					},
-					"status": "OK",
-					"code": 200,
+					"status": "Created",
+					"code": 201,
 					"_postman_previewlanguage": "json",
 					"header": [
 						{
@@ -96,20 +96,18 @@
 							"expires": "Invalid Date"
 						}
 					],
-					"body": "{\n    \"message\": \"Task created successfully\",\n    \"task\": {\n        \"id\": 1,\n        \"text\": \"Finish my album Papi Juancho\",\n        \"creation_date\": \"2025-08-13T00:00:00Z\",\n        \"end_date\": \"2025-08-30T00:00:00Z\",\n        \"status\": \"Sin Empezar\",\n        \"id_category\": 1,\n        \"id_user\": 1,\n        \"category\": {\n            \"id\": 1,\n            \"name\": \"Music\",\n            \"description\": \"My personal list for music =)\"\n        },\n        \"user\": {\n            \"id\": 1,\n            \"username\": \"ThePrettyBoy\"\n        }\n    }\n}"
+					"body": "{\n    \"message\": \"Task created successfully\",\n    \"task\": {\n        \"id\": 7,\n        \"text\": \"Finish my album Papi Juancho\",\n        \"creation_date\": \"2025-08-18T00:00:00Z\",\n        \"end_date\": \"2025-08-30T00:00:00Z\",\n        \"status\": \"Sin Empezar\",\n        \"id_category\": 7,\n        \"id_user\": 3,\n        \"category\": {\n            \"id\": 7,\n            \"name\": \"Music\",\n            \"description\": \"My personal list for music =)\",\n            \"id_user\": 3,\n            \"user\": {\n                \"id\": 0,\n                \"username\": \"\"\n            }\n        },\n        \"user\": {\n            \"id\": 3,\n            \"username\": \"ThePrettyBoy\",\n            \"profile_image\": \"https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png\"\n        }\n    }\n}"
 				}
 			]
 		},
 		{
-			"name": "Create Task Empty Text",
+			"name": "Create Task With Empty Text",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"var jsonData = pm.response.json();      ",
-							"var task_id = jsonData.task.id;          ",
-							"pm.environment.set(\"task_id\", task_id);"
+							""
 						],
 						"type": "text/javascript",
 						"packages": {}
@@ -173,8 +171,8 @@
 							]
 						}
 					},
-					"status": "OK",
-					"code": 200,
+					"status": "Bad Request",
+					"code": 400,
 					"_postman_previewlanguage": "json",
 					"header": [
 						{
@@ -189,20 +187,18 @@
 							"expires": "Invalid Date"
 						}
 					],
-					"body": "{\n    \"message\": \"Task created successfully\",\n    \"task\": {\n        \"id\": 1,\n        \"text\": \"Finish my album Papi Juancho\",\n        \"creation_date\": \"2025-08-13T00:00:00Z\",\n        \"end_date\": \"2025-08-30T00:00:00Z\",\n        \"status\": \"Sin Empezar\",\n        \"id_category\": 1,\n        \"id_user\": 1,\n        \"category\": {\n            \"id\": 1,\n            \"name\": \"Music\",\n            \"description\": \"My personal list for music =)\"\n        },\n        \"user\": {\n            \"id\": 1,\n            \"username\": \"ThePrettyBoy\"\n        }\n    }\n}"
+					"body": "{\n    \"error\": \"Invalid request body\"\n}"
 				}
 			]
 		},
 		{
-			"name": "Create Task Empty Date",
+			"name": "Create Task With Empty Date",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"var jsonData = pm.response.json();      ",
-							"var task_id = jsonData.task.id;          ",
-							"pm.environment.set(\"task_id\", task_id);"
+							""
 						],
 						"type": "text/javascript",
 						"packages": {}
@@ -266,8 +262,8 @@
 							]
 						}
 					},
-					"status": "OK",
-					"code": 200,
+					"status": "Bad Request",
+					"code": 400,
 					"_postman_previewlanguage": "json",
 					"header": [
 						{
@@ -282,7 +278,7 @@
 							"expires": "Invalid Date"
 						}
 					],
-					"body": "{\n    \"message\": \"Task created successfully\",\n    \"task\": {\n        \"id\": 1,\n        \"text\": \"Finish my album Papi Juancho\",\n        \"creation_date\": \"2025-08-13T00:00:00Z\",\n        \"end_date\": \"2025-08-30T00:00:00Z\",\n        \"status\": \"Sin Empezar\",\n        \"id_category\": 1,\n        \"id_user\": 1,\n        \"category\": {\n            \"id\": 1,\n            \"name\": \"Music\",\n            \"description\": \"My personal list for music =)\"\n        },\n        \"user\": {\n            \"id\": 1,\n            \"username\": \"ThePrettyBoy\"\n        }\n    }\n}"
+					"body": "{\n    \"error\": \"Invalid request body\"\n}"
 				}
 			]
 		},
@@ -363,12 +359,12 @@
 							"expires": "Invalid Date"
 						}
 					],
-					"body": "{\n    \"message\": \"Task updated successfully\",\n    \"task\": {\n        \"id\": 1,\n        \"text\": \"Finish my album Papi Juancho\",\n        \"creation_date\": \"2025-08-13T00:00:00Z\",\n        \"end_date\": \"2025-08-30T00:00:00Z\",\n        \"status\": \"Empezada\",\n        \"id_category\": 1,\n        \"id_user\": 1,\n        \"category\": {\n            \"id\": 1,\n            \"name\": \"Music\",\n            \"description\": \"My personal list for music =)\"\n        },\n        \"user\": {\n            \"id\": 1,\n            \"username\": \"ThePrettyBoy\"\n        }\n    }\n}"
+					"body": "{\n    \"message\": \"Task updated successfully\",\n    \"task\": {\n        \"id\": 7,\n        \"text\": \"Finish my album Papi Juancho\",\n        \"creation_date\": \"2025-08-18T00:00:00Z\",\n        \"end_date\": \"2025-08-30T00:00:00Z\",\n        \"status\": \"Empezada\",\n        \"id_category\": 7,\n        \"id_user\": 3,\n        \"category\": {\n            \"id\": 7,\n            \"name\": \"Music\",\n            \"description\": \"My personal list for music =)\",\n            \"id_user\": 3,\n            \"user\": {\n                \"id\": 0,\n                \"username\": \"\"\n            }\n        },\n        \"user\": {\n            \"id\": 3,\n            \"username\": \"ThePrettyBoy\",\n            \"profile_image\": \"https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png\"\n        }\n    }\n}"
 				}
 			]
 		},
 		{
-			"name": "Update Task Empty Status",
+			"name": "Update Task With Empty Status",
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -428,8 +424,8 @@
 							]
 						}
 					},
-					"status": "OK",
-					"code": 200,
+					"status": "Internal Server Error",
+					"code": 500,
 					"_postman_previewlanguage": "json",
 					"header": [
 						{
@@ -444,12 +440,12 @@
 							"expires": "Invalid Date"
 						}
 					],
-					"body": "{\n    \"message\": \"Task updated successfully\",\n    \"task\": {\n        \"id\": 1,\n        \"text\": \"Finish my album Papi Juancho\",\n        \"creation_date\": \"2025-08-13T00:00:00Z\",\n        \"end_date\": \"2025-08-30T00:00:00Z\",\n        \"status\": \"Empezada\",\n        \"id_category\": 1,\n        \"id_user\": 1,\n        \"category\": {\n            \"id\": 1,\n            \"name\": \"Music\",\n            \"description\": \"My personal list for music =)\"\n        },\n        \"user\": {\n            \"id\": 1,\n            \"username\": \"ThePrettyBoy\"\n        }\n    }\n}"
+					"body": "{\n    \"error\": \"ERROR: new row for relation \\\"tasks\\\" violates check constraint \\\"chk_tasks_status\\\" (SQLSTATE 23514)\"\n}"
 				}
 			]
 		},
 		{
-			"name": "Update Task Incorrect Status",
+			"name": "Update Task With Incorrect Status",
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -509,8 +505,8 @@
 							]
 						}
 					},
-					"status": "OK",
-					"code": 200,
+					"status": "Internal Server Error",
+					"code": 500,
 					"_postman_previewlanguage": "json",
 					"header": [
 						{
@@ -525,7 +521,7 @@
 							"expires": "Invalid Date"
 						}
 					],
-					"body": "{\n    \"message\": \"Task updated successfully\",\n    \"task\": {\n        \"id\": 1,\n        \"text\": \"Finish my album Papi Juancho\",\n        \"creation_date\": \"2025-08-13T00:00:00Z\",\n        \"end_date\": \"2025-08-30T00:00:00Z\",\n        \"status\": \"Empezada\",\n        \"id_category\": 1,\n        \"id_user\": 1,\n        \"category\": {\n            \"id\": 1,\n            \"name\": \"Music\",\n            \"description\": \"My personal list for music =)\"\n        },\n        \"user\": {\n            \"id\": 1,\n            \"username\": \"ThePrettyBoy\"\n        }\n    }\n}"
+					"body": "{\n    \"error\": \"ERROR: new row for relation \\\"tasks\\\" violates check constraint \\\"chk_tasks_status\\\" (SQLSTATE 23514)\"\n}"
 				}
 			]
 		},
@@ -620,7 +616,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"username\" : \"ThePrettyBoy\",\n    \"password\" : \"DirtyBoy\"\n}"
+					"raw": ""
 				},
 				"url": {
 					"raw": "{{service_url}}/tasks/user",
@@ -666,12 +662,12 @@
 							"expires": "Invalid Date"
 						}
 					],
-					"body": "[\n    {\n        \"id\": 1,\n        \"text\": \"Finish my album Papi Juancho\",\n        \"creation_date\": \"2025-08-13T00:00:00Z\",\n        \"end_date\": \"2025-08-30T00:00:00Z\",\n        \"status\": \"Empezada\",\n        \"id_category\": 1,\n        \"id_user\": 1,\n        \"category\": {\n            \"id\": 1,\n            \"name\": \"Music\",\n            \"description\": \"My personal list for music =)\"\n        },\n        \"user\": {\n            \"id\": 1,\n            \"username\": \"ThePrettyBoy\"\n        }\n    }\n]"
+					"body": "[\n    {\n        \"id\": 7,\n        \"text\": \"Finish my album Papi Juancho\",\n        \"creation_date\": \"2025-08-18T00:00:00Z\",\n        \"end_date\": \"2025-08-30T00:00:00Z\",\n        \"status\": \"Empezada\",\n        \"id_category\": 7,\n        \"id_user\": 3,\n        \"category\": {\n            \"id\": 7,\n            \"name\": \"Music\",\n            \"description\": \"My personal list for music =)\",\n            \"id_user\": 3,\n            \"user\": {\n                \"id\": 0,\n                \"username\": \"\"\n            }\n        },\n        \"user\": {\n            \"id\": 3,\n            \"username\": \"ThePrettyBoy\",\n            \"profile_image\": \"https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png\"\n        }\n    }\n]"
 				}
 			]
 		},
 		{
-			"name": "Get Task",
+			"name": "Get Task By Id",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -690,7 +686,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"username\" : \"ThePrettyBoy\",\n    \"password\" : \"DirtyBoy\"\n}"
+					"raw": ""
 				},
 				"url": {
 					"raw": "{{service_url}}/tasks/{{task_id}}",
@@ -736,7 +732,7 @@
 							"expires": "Invalid Date"
 						}
 					],
-					"body": "{\n    \"id\": 1,\n    \"text\": \"Finish my album Papi Juancho\",\n    \"creation_date\": \"2025-08-13T00:00:00Z\",\n    \"end_date\": \"2025-08-30T00:00:00Z\",\n    \"status\": \"Empezada\",\n    \"id_category\": 1,\n    \"id_user\": 1,\n    \"category\": {\n        \"id\": 1,\n        \"name\": \"Music\",\n        \"description\": \"My personal list for music =)\"\n    },\n    \"user\": {\n        \"id\": 1,\n        \"username\": \"ThePrettyBoy\"\n    }\n}"
+					"body": "{\n    \"id\": 7,\n    \"text\": \"Finish my album Papi Juancho\",\n    \"creation_date\": \"2025-08-18T00:00:00Z\",\n    \"end_date\": \"2025-08-30T00:00:00Z\",\n    \"status\": \"Empezada\",\n    \"id_category\": 7,\n    \"id_user\": 3,\n    \"category\": {\n        \"id\": 7,\n        \"name\": \"Music\",\n        \"description\": \"My personal list for music =)\",\n        \"id_user\": 3,\n        \"user\": {\n            \"id\": 0,\n            \"username\": \"\"\n        }\n    },\n    \"user\": {\n        \"id\": 3,\n        \"username\": \"ThePrettyBoy\",\n        \"profile_image\": \"https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png\"\n    }\n}"
 				}
 			]
 		}

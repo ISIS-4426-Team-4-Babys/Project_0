@@ -1,11 +1,11 @@
 {
 	"info": {
-		"_postman_id": "2bf95502-23d2-40a1-8ae7-6e85653edc80",
+		"_postman_id": "0615bdad-b216-43c2-9a60-48f6ac3c7821",
 		"name": "Users",
 		"description": "### Welcome to Postman! This is your first collection. \n\nCollections are your starting point for building and testing APIs. You can use this one to:\n\n• Group related requests\n• Test your API in real-world scenarios\n• Document and share your requests\n\nUpdate the name and overview whenever you’re ready to make it yours.\n\n[Learn more about Postman Collections.](https://learning.postman.com/docs/collections/collections-overview/)",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "47552131",
-		"_collection_link": "https://nathaliaq16-620590.postman.co/workspace/Nathalia-Alexandra-Quiroga-Alfa~5b22ce91-e7f6-45ac-868e-e2a36efe4bf5/collection/47552131-2bf95502-23d2-40a1-8ae7-6e85653edc80?action=share&source=collection_link&creator=47552131"
+		"_exporter_id": "47548803",
+		"_collection_link": "https://mrcheesyburgeru-3113691.postman.co/workspace/Nicolas-Rozo-Fajardo's-Workspac~d282d319-67a1-4bda-8570-f9f29991945d/collection/47548803-0615bdad-b216-43c2-9a60-48f6ac3c7821?action=share&source=collection_link&creator=47548803"
 	},
 	"item": [
 		{
@@ -73,18 +73,18 @@
 							"expires": "Invalid Date"
 						}
 					],
-					"body": "{\n    \"message\": \"User created successfully\",\n    \"user\": {\n        \"id\": 1,\n        \"username\": \"ThePrettyBoy\"\n    }\n}"
+					"body": "{\n    \"message\": \"User created successfully\",\n    \"user\": {\n        \"id\": 3,\n        \"username\": \"ThePrettyBoy\",\n        \"profile_image\": \"https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png\"\n    }\n}"
 				}
 			]
 		},
 		{
-			"name": "Create User Int Username",
+			"name": "Create User With Invalid Username (Wrong Datatype)",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"username\" : 3434,\n    \"password\" : \"DirtyBoy\"\n}",
+					"raw": "{\n    \"username\" : 3434,\n    \"password\" : \"DirtyBoy\",\n    \"profile_image\" : \"https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -126,8 +126,8 @@
 							]
 						}
 					},
-					"status": "OK",
-					"code": 200,
+					"status": "Bad Request",
+					"code": 400,
 					"_postman_previewlanguage": "json",
 					"header": [
 						{
@@ -142,18 +142,18 @@
 							"expires": "Invalid Date"
 						}
 					],
-					"body": "{\n    \"message\": \"User created successfully\",\n    \"user\": {\n        \"id\": 1,\n        \"username\": \"ThePrettyBoy\"\n    }\n}"
+					"body": "{\n    \"error\": \"Invalid request body\"\n}"
 				}
 			]
 		},
 		{
-			"name": "Create Empty User",
+			"name": "Create User With Empty Username",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"username\" : \"\",\n    \"password\" : \"DirtyBoy\"\n}",
+					"raw": "{\n    \"username\" : \"\",\n    \"password\" : \"DirtyBoy\",\n    \"profile_image\" : \"https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -195,8 +195,8 @@
 							]
 						}
 					},
-					"status": "OK",
-					"code": 200,
+					"status": "Bad Request",
+					"code": 400,
 					"_postman_previewlanguage": "json",
 					"header": [
 						{
@@ -211,18 +211,18 @@
 							"expires": "Invalid Date"
 						}
 					],
-					"body": "{\n    \"message\": \"User created successfully\",\n    \"user\": {\n        \"id\": 1,\n        \"username\": \"ThePrettyBoy\"\n    }\n}"
+					"body": "{\n    \"error\": \"Invalid request body\"\n}"
 				}
 			]
 		},
 		{
-			"name": "Create Duplicate User",
+			"name": "Create User With Duplicate Username",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"username\" : \"ThePrettyBoy\",\n    \"password\" : \"4babys\"\n}",
+					"raw": "{\n    \"username\" : \"ThePrettyBoy\",\n    \"password\" : \"4babys\",\n    \"profile_image\" : \"https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -264,8 +264,8 @@
 							]
 						}
 					},
-					"status": "OK",
-					"code": 200,
+					"status": "Internal Server Error",
+					"code": 500,
 					"_postman_previewlanguage": "json",
 					"header": [
 						{
@@ -280,7 +280,7 @@
 							"expires": "Invalid Date"
 						}
 					],
-					"body": "{\n    \"message\": \"User created successfully\",\n    \"user\": {\n        \"id\": 1,\n        \"username\": \"ThePrettyBoy\"\n    }\n}"
+					"body": "{\n    \"error\": \"Could not create user\"\n}"
 				}
 			]
 		},
@@ -364,19 +364,18 @@
 							"expires": "Invalid Date"
 						}
 					],
-					"body": "{\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NTUxMzEyMTksInN1YiI6MX0.8stkFrNpZTDWJQfGQobxZ0IfbNCKdNj_alQdqhy9XrE\"\n}"
+					"body": "{\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NTU2NTg1ODUsInN1YiI6M30.twuX5_rMVpi3hE8w2uYxCzxQdvEf4WF1xaSATyn6poI\",\n    \"user\": {\n        \"id\": 3,\n        \"username\": \"ThePrettyBoy\",\n        \"profile_image\": \"https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png\"\n    }\n}"
 				}
 			]
 		},
 		{
-			"name": "Login User Wrong Password",
+			"name": "Login User With Wrong Password",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"var jsonData = pm.response.json();",
-							"pm.environment.set(\"auth_token\", jsonData.token);"
+							""
 						],
 						"type": "text/javascript",
 						"packages": {}
@@ -432,8 +431,8 @@
 							]
 						}
 					},
-					"status": "OK",
-					"code": 200,
+					"status": "Unauthorized",
+					"code": 401,
 					"_postman_previewlanguage": "json",
 					"header": [
 						{
@@ -448,7 +447,79 @@
 							"expires": "Invalid Date"
 						}
 					],
-					"body": "{\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NTUxMzEyMTksInN1YiI6MX0.8stkFrNpZTDWJQfGQobxZ0IfbNCKdNj_alQdqhy9XrE\"\n}"
+					"body": "{\n    \"error\": \"Invalid username or password\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Login User With Wrong Username",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\" : \"NoUserFound\",\n    \"password\" : \"4Babys\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{service_url}}/users/login",
+					"host": [
+						"{{service_url}}"
+					],
+					"path": [
+						"users",
+						"login"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Login User With Wrong Username",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\" : \"NoUserFound\",\n    \"password\" : \"4Babys\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{service_url}}/users/login",
+							"host": [
+								"{{service_url}}"
+							],
+							"path": [
+								"users",
+								"login"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\n    \"error\": \"Invalid username or password\"\n}"
 				}
 			]
 		}
