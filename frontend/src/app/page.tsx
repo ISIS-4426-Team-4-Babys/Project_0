@@ -123,7 +123,6 @@ export default function Home() {
     if (token) {
       fetchTasks();
       fetchCategories();
-      console.log(localStorage.getItem("api_token"));
     }
     return () => {
       ac.abort();
@@ -216,7 +215,7 @@ const onDelete = async (id: string) => {
       }
 
       // After adding, fetch updated categories from backend
-      const updatedResponse = await fetch("/api/categories", {
+      const updatedResponse = await fetch("/api/categories/user", {
         method: "GET",
         headers,
         credentials: "include",
@@ -290,7 +289,7 @@ const onDelete = async (id: string) => {
         throw new Error(data.error);
       }
 
-      const updatedResponse = await fetch("/api/categories", {
+      const updatedResponse = await fetch("/api/categories/user", {
         method: "GET",
         headers,
         credentials: "include",
