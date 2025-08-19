@@ -31,8 +31,22 @@ func CreateCategory(c *gin.Context) {
 		return
 	}
 
+	// Extract user ID from context (set by JWT middleware)
+	userID, exists := c.Get("userID")
+	if !exists {
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "Unauthorized"})
+		return
+	}
+
+	// Assert userID type
+	uid, ok := userID.(uint64)
+	if !ok {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Invalid user ID"})
+		return
+	}
+
 	// Create category via service layer
-	category, err := services.CreateCategory(req.Name, req.Description)
+	category, err := services.CreateCategory(req.Name, req.Description, uid)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to create category"})
 		return
@@ -65,9 +79,23 @@ func DeleteCategory(c *gin.Context) {
 }
 
 // GetAllCategories handles GET /categories to list all categories
-func GetAllCategories(c *gin.Context) {
-	// Fetch categories from service
-	categories, err := services.GetAllCategories()
+func GetCategoriesByUser(c *gin.Context) {
+	// Extract user ID from context (set by JWT middleware)
+	userID, exists := c.Get("userID")
+	if !exists {
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "Unauthorized"})
+		return
+	}
+
+	// Assert userID type
+	uid, ok := userID.(uint64)
+	if !ok {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Invalid user ID"})
+		return
+	}
+
+	// Retrieve categories from service
+	categories, err := services.GetCategoriesByUser(uid)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to retrieve categories"})
 		return

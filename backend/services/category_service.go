@@ -8,15 +8,26 @@ import (
 )
 
 // CreateCategory creates and saves a new category
-func CreateCategory(name, description string) (models.Category, error) {
+func CreateCategory(name, description string, idUser uint64) (models.Category, error) {
 	category := models.Category{
 		Name:        name,
 		Description: description,
+		IDUser:      idUser,
 	}
 
 	// Insert category into DB
 	result := config.DB.Create(&category)
-	return category, result.Error
+	if result.Error != nil {
+		return models.Category{}, result.Error
+	}
+
+	// Load User relation
+	err := config.DB.Preload("User").First(&category, category.ID).Error
+	if err != nil {
+		return models.Category{}, err
+	}
+
+	return category, nil
 }
 
 // DeleteCategory removes a category by ID
@@ -31,12 +42,14 @@ func DeleteCategory(id uint) error {
 	return result.Error
 }
 
-// GetAllCategories retrieves all categories from DB
-func GetAllCategories() ([]models.Category, error) {
+// GetCategoriesByUser fetches all categories for a user
+func GetCategoriesByUser(userID uint64) ([]models.Category, error) {
 	var categories []models.Category
-
-	result := config.DB.Find(&categories)
-	return categories, result.Error
+	err := config.DB.
+		Where("id_user = ?", userID).
+		Preload("User").
+		Find(&categories).Error
+	return categories, err
 }
 
 // UpdateCategory updates fields of an existing category, then loads relations
@@ -60,6 +73,12 @@ func UpdateCategory(id uint64, name *string, description *string) (models.Catego
 	result := config.DB.Save(&category)
 	if result.Error != nil {
 		return models.Category{}, result.Error
+	}
+
+	// Load User relation
+	err := config.DB.Preload("User").First(&category, category.ID).Error
+	if err != nil {
+		return models.Category{}, err
 	}
 
 	return category, nil

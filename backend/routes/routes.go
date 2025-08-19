@@ -22,7 +22,7 @@ func SetupRouter() *gin.Engine {
 	protected.POST("/categories", controllers.CreateCategory)
 	protected.PUT("/categories/:id", controllers.UpdateCategory)
 	protected.DELETE("/categories/:id", controllers.DeleteCategory)
-	protected.GET("/categories", controllers.GetAllCategories)
+	protected.GET("/categories/user", controllers.GetCategoriesByUser)
 
 	// Task routes
 	protected.POST("/tasks", controllers.CreateTask)
