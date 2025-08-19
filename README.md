@@ -9,6 +9,10 @@ Una aplicación web completa de gestión de tareas la cual incluye autenticació
 - Juan Andrés Ariza Gacharná - ja.arizag@uniandes.edu.co
 - Nathalia Quiroga Alfaro - n.quiroga@uniandes.edu.co
 
+## 🎥 Demostración
+
+El proyecto incluye una demostración en video que muestra todas las funcionalidades del mismo. Puede consultar el video en el siguiente enlace. 
+
 ## ✨ Características Principales
 
 - **🔐 Autenticación de usuarios** - Sistema completo de registro, login y gestión de usuarios.
@@ -115,7 +119,3 @@ Para obtener mejores resultados en las pruebas, ejecuta las colecciones en el si
 └── 📄 .gitignore
 └── 📄 LICENSE
 ```
-
-## 🎥 Demostración
-
-El proyecto incluye una demostración en video que muestra todas las funcionalidades del mismo. Puede consultar el video en el siguiente enlace. 
