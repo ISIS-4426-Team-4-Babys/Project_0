@@ -252,7 +252,13 @@ const onDelete = async (id: string) => {
         throw new Error(data.error);
       }
 
-      setCategories((prevCategories) => prevCategories.filter((category) => category.id !== id));
+      setCategories((prevCategories) =>
+        prevCategories.filter((category) => category.id !== id)
+      );
+
+      setTasks((prevTasks) =>
+        prevTasks.filter((task) => String(task.id_category) !== String(id))
+      );
     } catch (error) {
       alert(error ? error : "An error occurred during category deletion.");
     }

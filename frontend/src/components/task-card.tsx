@@ -191,7 +191,6 @@ export function TaskCard({ task, onDelete, onUpdate, categories }: TaskCardProps
             </div>
             {expanded && !editMode && (
               <div className="flex items-center justify-between text-xs text-muted-foreground">
-                <div><strong>ID:</strong> {task.id}</div>
                 <div><strong>Created:</strong> {getDueLabel(task.creation_date)}</div>
               </div>
 
