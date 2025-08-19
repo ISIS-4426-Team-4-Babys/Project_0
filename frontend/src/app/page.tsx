@@ -101,7 +101,7 @@ export default function Home() {
         headers['Authorization'] = `Bearer ${token}`;
       }
 
-      const response = await fetch('/api/categories', {
+      const response = await fetch('/api/categories/user', {
         method: 'GET',
         headers,
         credentials: 'include',
