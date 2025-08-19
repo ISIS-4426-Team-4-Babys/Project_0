@@ -1,6 +1,6 @@
 # 📋 Task Management Application
 
-Una aplicación web completa de gestión de tareas la cual incluye autenticación de usuarios, gestión de categorías y tareas con una interfaz moderna.
+Una aplicación web completa de gestión de tareas la cual incluye autenticación y manejo de usuarios, gestión de tareas por categorías y creación de tareas a través de una interfaz intuitiva y moderna.
 
 ## 👥 Integrantes del Equipo
 
@@ -11,7 +11,7 @@ Una aplicación web completa de gestión de tareas la cual incluye autenticació
 
 ## ✨ Características Principales
 
-- **🔐 Autenticación de usuarios** - Sistema completo de registro y login
+- **🔐 Autenticación de usuarios** - Sistema completo de registro, login y gestión de usuarios
 - **📁 Gestión de categorías** - Organiza tus tareas por categorías personalizadas
 - **✅ CRUD completo de tareas** - Crear, leer, actualizar y eliminar tareas
 - **🔧 Panel de administración** - Gestión de base de datos con Adminer
@@ -22,13 +22,16 @@ Una aplicación web completa de gestión de tareas la cual incluye autenticació
 La aplicación está compuesta por los siguientes servicios:
 
 - **Frontend**: Interfaz de usuario desarrollada con next.js
-- **Backend**: API RESTful con endpoints para gestión de usuarios, categorías y tareas
+- **Backend**: API RESTful con endpoints para gestión de usuarios, categorías y tareas desarrollada en Go con el framework Gin
 - **Base de Datos**: Sistema de persistencia de datos
 - **Adminer**: Interfaz web para administración de base de datos
 
 ## 🚀 Inicio Rápido
 
 ### Prerrequisitos
+
+
+Antes de ejecutar la aplicación, asegurese de contar con las siguientes dependencias en su dispositivo:
 
 - Docker
 - Docker Compose
