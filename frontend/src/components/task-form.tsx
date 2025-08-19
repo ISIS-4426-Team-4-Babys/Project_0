@@ -194,7 +194,7 @@ export function TaskForm({ addTask, categories, addCategory, deleteCategory, upd
             </DialogHeader>
             <div>
               <div className="flex items-center justify-between">
-                <p>Here you can add or delete categories.</p>
+                <p>Here you can add, update or delete categories.</p>
                 <Button
                   size="sm"
                   onClick={() => setShowAddRow(true)}

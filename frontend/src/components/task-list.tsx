@@ -29,7 +29,7 @@ export function TaskList({ tasks, categories, onDelete, onUpdate }: TaskListProp
             onChange={(e) => setStatusFilter(e.target.value)}
             className="w-64 rounded-lg px-4 py-2 text-[#1e3a8a] shadow bg-white mb-2 text-base"
           >
-            <option value="All Statuses">All Statuses</option>
+            <option value="All Statuses">All Status</option>
             <option value="Sin Empezar">Sin Empezar</option>
             <option value="Empezada">Empezada</option>
             <option value="Finalizada">Finalizada</option>

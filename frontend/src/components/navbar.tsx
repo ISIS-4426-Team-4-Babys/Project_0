@@ -68,6 +68,7 @@ export function Navbar({ user, setToken }: { user: any, setToken: (token: string
                             onClick={() => {
                                 setToken(null);
                                 localStorage.removeItem("api_token");
+                                localStorage.removeItem("user");
                                 window.location.reload();
                             }}
                         >

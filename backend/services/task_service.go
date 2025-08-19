@@ -17,7 +17,7 @@ func CreateTask(text string, endDate *time.Time, idCategory uint64, idUser uint6
 
 	task := models.Task{
 		Text:         text,
-		CreationDate: time.Now(),
+		CreationDate: time.Now().In(time.FixedZone("UTC-5", -5*60*60)),
 		EndDate:      endDate,
 		Status:       "Sin Empezar",
 		IDCategory:   idCategory,

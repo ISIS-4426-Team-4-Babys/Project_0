@@ -16,9 +16,7 @@ COPY . .
 # Build the Next.js application for production
 RUN npm run build
 
-# -----------------------------
 # Second stage: run optimized app
-# -----------------------------
 FROM node:20-alpine AS runner
 
 # Set working directory inside container
