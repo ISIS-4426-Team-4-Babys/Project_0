@@ -11,20 +11,20 @@ Una aplicación web completa de gestión de tareas la cual incluye autenticació
 
 ## ✨ Características Principales
 
-- **🔐 Autenticación de usuarios** - Sistema completo de registro, login y gestión de usuarios
-- **📁 Gestión de categorías** - Organiza tus tareas por categorías personalizadas
-- **✅ CRUD completo de tareas** - Crear, leer, actualizar y eliminar tareas
-- **🔧 Panel de administración** - Gestión de base de datos con Adminer
-- **🧪 API Testing** - Colecciones completas de Postman incluidas
+- **🔐 Autenticación de usuarios** - Sistema completo de registro, login y gestión de usuarios.
+- **📁 Gestión de categorías** - Organiza tus tareas por categorías personalizadas.
+- **✅ CRUD completo de tareas** - Crear, leer, actualizar y eliminar tareas.
+- **🔧 Panel de administración** - Gestión de base de datos con Adminer.
+- **🧪 API Testing** - Colecciones completas de Postman incluidas.
 
 ## 🏗️ Arquitectura del Proyecto
 
 La aplicación está compuesta por los siguientes servicios:
 
-- **Frontend**: Interfaz de usuario desarrollada con next.js
-- **Backend**: API RESTful con endpoints para gestión de usuarios, categorías y tareas desarrollada en Go con el framework Gin
-- **Base de Datos**: Sistema de persistencia de datos
-- **Adminer**: Interfaz web para administración de base de datos
+- **Frontend**: Interfaz de usuario desarrollada con Next.js.
+- **Backend**: API RESTful con endpoints para gestión de usuarios, categorías y tareas desarrollada en Go con el framework Gin.
+- **Base de Datos**: Sistema de persistencia de datos.
+- **Adminer**: Interfaz web para administración de base de datos.
 
 ## 🚀 Inicio Rápido
 
@@ -69,7 +69,7 @@ Para facilitar las pruebas, la aplicación incluye usuarios preconfigurados:
 | Usuario | Contraseña | Descripción |
 |---------|------------|-------------|
 | `NepoBaby` | `Nepo123Baby` | Usuario de prueba 1 |
-| `ErizoPetizo` | `Erizo123Baby` | Usuario de prueba 2 |
+| `ErizoPetizo` | `Erizo123Petizo` | Usuario de prueba 2 |
 
 > **💡 Tip**: Puedes crear usuarios adicionales desde el frontend o utilizando los endpoints de la API. 
 
@@ -79,19 +79,19 @@ Para facilitar las pruebas, la aplicación incluye usuarios preconfigurados:
 
 El proyecto incluye colecciones completas de Postman para testing de la API:
 
-1. **Ubicación**: Las colecciones se encuentran en la carpeta `/collections`
-2. **Importar coleccionesy entorno**: Abre Postman e importa todos los archivos `.json`
-3. **Seleccionar entorno**: En Postman, selecciona el environment `.ToDo App` antes de ejecutar las pruebas
+1. **Ubicación**: Las colecciones se encuentran en la carpeta `/collections`.
+2. **Importar coleccionesy entorno**: Abre Postman e importa todos los archivos `.json`.
+3. **Seleccionar entorno**: En Postman, selecciona el environment `.ToDo App` antes de ejecutar las pruebas.
 
 ### Orden Recomendado de Ejecución
 
 Para obtener mejores resultados en las pruebas, ejecuta las colecciones en el siguiente orden:
 
-1. **👤 Usuarios** - Crear usuarios, login y pruebas de autenticación
-2. **📁 Categorías** - CRUD de categorías (sin DELETE)
-3. **✅ Tareas** - CRUD de tareas (sin DELETE)
-4. **🗑️ Eliminar Tareas** - Casos de DELETE para tareas
-5. **🗑️ Eliminar Categorías** - Casos de DELETE para categorías
+1. **👤 Usuarios** - Crear usuarios, login y pruebas de autenticación.
+2. **📁 Categorías** - CRUD de categorías (sin DELETE).
+3. **✅ Tareas** - CRUD de tareas (sin DELETE).
+4. **🗑️ Eliminar Tareas** - Casos de DELETE para tareas.
+5. **🗑️ Eliminar Categorías** - Casos de DELETE para categorías.
 
 > **⚠️ Importante**: Este orden asegura que las relaciones entre entidades se mantengan correctas durante las pruebas.
 
