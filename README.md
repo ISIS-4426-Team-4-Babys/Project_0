@@ -50,6 +50,8 @@ La aplicación está compuesta por los siguientes servicios:
    | Backend API | http://localhost:8080 | Endpoints de la API REST |
    | Adminer | http://localhost:8081 | Panel de administración de BD |
 
+> **💡 Tip**: Puede acceder al administrado de la base de datos usando las credenciales definidas en las variables de entorno de la base de datos.
+
 ## 👥 Usuarios de Prueba
 
 Para facilitar las pruebas, la aplicación incluye usuarios preconfigurados:
@@ -59,7 +61,7 @@ Para facilitar las pruebas, la aplicación incluye usuarios preconfigurados:
 | `NepoBaby` | `Nepo123Baby` | Usuario de prueba 1 |
 | `ErizoPetizo` | `Erizo123Baby` | Usuario de prueba 2 |
 
-> **💡 Tip**: Puedes crear usuarios adicionales desde el frontend o utilizando los endpoints de la API. De igual forma, puede acceder al administrado de la base de datos usando las credenciales definidas en las variables de entorno de la base de datos. 
+> **💡 Tip**: Puedes crear usuarios adicionales desde el frontend o utilizando los endpoints de la API. 
 
 ## 🧪 Testing con Postman
 
@@ -68,9 +70,8 @@ Para facilitar las pruebas, la aplicación incluye usuarios preconfigurados:
 El proyecto incluye colecciones completas de Postman para testing de la API:
 
 1. **Ubicación**: Las colecciones se encuentran en la carpeta `/collections`
-2. **Importar colecciones**: Abre Postman e importa todos los archivos `.json`
-3. **Configurar entorno**: Importa el archivo de environment (`.postman_environment.json`)
-4. **Seleccionar entorno**: En Postman, selecciona el environment importado antes de ejecutar las pruebas
+2. **Importar coleccionesy entorno**: Abre Postman e importa todos los archivos `.json`
+3. **Seleccionar entorno**: En Postman, selecciona el environment `.ToDo App` antes de ejecutar las pruebas
 
 ### Orden Recomendado de Ejecución
 
@@ -107,4 +108,4 @@ Para obtener mejores resultados en las pruebas, ejecuta las colecciones en el si
 
 ## 🎥 Demostración
 
-El proyecto incluye una demostración en video que muestra:
+El proyecto incluye una demostración en video que muestra todas las funcionalidades del mismo. Puede consultar el video en el siguiente enlace. 
