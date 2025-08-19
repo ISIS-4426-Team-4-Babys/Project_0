@@ -2,6 +2,13 @@
 
 Una aplicación web completa de gestión de tareas la cual incluye autenticación de usuarios, gestión de categorías y tareas con una interfaz moderna.
 
+## 👥 Integrantes del Equipo
+
+- Nicolas Rozo Fajardo - n.rozo@uniandes.edu.co
+- Manuela Pachecho Malagón - m.pachechom2@uniandes.edu.co
+- Juan Andrés Ariza Gacharná - ja.arizag@uniandes.edu.co
+- Nathalia Quiroga Alfaro - n.quiroga@uniandes.edu.co
+
 ## ✨ Características Principales
 
 - **🔐 Autenticación de usuarios** - Sistema completo de registro y login
